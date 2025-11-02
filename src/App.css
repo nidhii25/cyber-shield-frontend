@@ -1,0 +1,29 @@
+/* App-wide layout tweaks */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+/* Navbar styles */
+.navbar-glow {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+/* Gradient border effect for cards */
+.card-gradient-border {
+  border: 2px solid transparent;
+  background-image: linear-gradient(#1f2937, #1f2937),
+    linear-gradient(to right, #3b82f6, #9333ea);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+}
+
+/* Subtle hover lift */
+.hover-lift {
+  transition: all 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+}
