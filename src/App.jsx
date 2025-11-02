@@ -4,7 +4,8 @@ import { motion } from 'framer-motion';
 // ===================================
 // CONSTANTS
 // ===================================
-const API_BASE = 'http://localhost:8000';
+const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+
 
 const NAV_ITEMS = [
   { id: 'home', label: 'Home', icon: Shield },
