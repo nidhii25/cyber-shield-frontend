@@ -271,12 +271,12 @@ const AnalysisPage = () => {
   const loadData = async () => {
     setLoading(true);
     setError(null);
+
     try {
       const response = await fetch(`${API_BASE}/eda/data_accuracy`);
-      if (!response.ok) throw new Error('Failed to fetch EDA data');
+      if (!response.ok) throw new Error("Failed to fetch EDA data");
       const data = await response.json();
       setEdaData(data);
-      
     } catch (err) {
       setError(err.message);
     } finally {
@@ -287,6 +287,16 @@ const AnalysisPage = () => {
   useEffect(() => {
     loadData();
   }, []);
+
+  // Static image list (same order every time)
+  const STATIC_IMAGES = [
+    { key: "Top 20 Attack Types", src: "/static/eda/top_20_attack_types.png" },
+    { key: "Top 15 Countries", src: "/static/eda/top_15_countries.png" },
+    { key: "Top 10 Target Industries", src: "/static/eda/top_10_target_industries.png" },
+    { key: "Attack vs Impact", src: "/static/eda/attack_vs_impact_text.png" },
+    { key: "Financial Loss vs Users", src: "/static/eda/financial_loss_vs_affected_users.png" },
+    { key: "Correlation Heatmap", src: "/static/eda/correlation_heatmap.png" }
+  ];
 
   return (
     <div className="space-y-8 animate-fade-in">
@@ -300,50 +310,53 @@ const AnalysisPage = () => {
       ) : error ? (
         <div className="bg-red-900/30 border border-red-500 rounded-xl p-8 text-center">
           <p className="text-red-400">Error: {error}</p>
-          <button onClick={loadData} className="mt-4 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg">
+          <button
+            onClick={loadData}
+            className="mt-4 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg"
+          >
             Retry
           </button>
         </div>
       ) : edaData ? (
         <>
+          {/* Data Quality Cards */}
           <div className="grid md:grid-cols-5 gap-4">
             {Object.entries(edaData.data_quality).map(([key, value]) => (
               <MetricCard key={key} label={key} value={value} />
             ))}
           </div>
 
+          {/* Static Chart Images */}
           <div className="flex flex-col items-center space-y-12">
-          {Object.entries(edaData.plots).map(([key, path], index) => {
-            const fullPath = path.startsWith('http') ? path : `${API_BASE}${path}`;
-            console.log(`Loading image for : ${fullPath}`);
-              return(
-                <motion.div
-                  key={key}
-                  className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 border border-gray-700 shadow-lg w-full md:w-3/4"
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                >
-                  <h3 className="text-2xl font-bold text-white mb-6 text-center">
-                    {key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
-                  </h3>
-                  <motion.img
-                    src={fullPath}
-                    alt={key}
-                    className="w-full rounded-xl border border-gray-600 cursor-pointer"
-                    whileHover={{ scale: 1.03 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </motion.div>
-              );
-            })}
+            {STATIC_IMAGES.map((img, index) => (
+              <motion.div
+                key={img.key}
+                className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 border border-gray-700 shadow-lg w-full md:w-3/4"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+              >
+                <h3 className="text-2xl font-bold text-white mb-6 text-center">{img.key}</h3>
+
+                <motion.img
+                  src={img.src}
+                  alt={img.key}
+                  className="w-full rounded-xl border border-gray-600 cursor-pointer"
+                  whileHover={{ scale: 1.03 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.div>
+            ))}
           </div>
         </>
       ) : (
         <div className="bg-gray-800 rounded-xl p-8 border border-gray-700 text-center">
           <BarChart3 className="w-16 h-16 text-gray-600 mx-auto mb-4" />
           <p className="text-gray-400">Click the button to load data analysis</p>
-          <button onClick={loadData} className="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-all">
+          <button
+            onClick={loadData}
+            className="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-all"
+          >
             Load Analysis
           </button>
         </div>
@@ -351,6 +364,8 @@ const AnalysisPage = () => {
     </div>
   );
 };
+
+
 
 const PhishingPage = () => {
   const [url, setUrl] = useState('');
