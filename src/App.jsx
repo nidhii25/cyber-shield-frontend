@@ -324,7 +324,7 @@ const AnalysisPage = () => {
 
             <ChartBox title="Top 20 Attack Types">
               <img 
-                src="/static/eda/top_20_attack_types.png"
+                src="https://res.cloudinary.com/dn6xjjn10/image/upload/v1763494381/top_20_attack_types_rvfqhi.png"
                 className="w-full rounded-xl border border-gray-600"
                 alt="Top 20 Attack Types"
               />
@@ -332,7 +332,7 @@ const AnalysisPage = () => {
 
             <ChartBox title="Top 15 Countries">
               <img 
-                src="/static/eda/top_15_countries.png"
+                src="https://res.cloudinary.com/dn6xjjn10/image/upload/v1763494380/top_15_countries_cdxkuf.png"
                 className="w-full rounded-xl border border-gray-600"
                 alt="Top Countries"
               />
@@ -340,7 +340,7 @@ const AnalysisPage = () => {
 
             <ChartBox title="Top 10 Target Industries">
               <img 
-                src="/static/eda/top_10_target_industries.png"
+                src="https://res.cloudinary.com/dn6xjjn10/image/upload/v1763494381/top_10_target_industries_cztomj.png"
                 className="w-full rounded-xl border border-gray-600"
                 alt="Industries"
               />
@@ -348,7 +348,7 @@ const AnalysisPage = () => {
 
             <ChartBox title="Attack vs Impact">
               <img 
-                src="/static/eda/attack_vs_impact_text.png"
+                src="https://res.cloudinary.com/dn6xjjn10/image/upload/v1763494381/attack_vs_impact_text_xpolaa.png"
                 className="w-full rounded-xl border border-gray-600"
                 alt="Attack vs Impact"
               />
@@ -356,7 +356,7 @@ const AnalysisPage = () => {
 
             <ChartBox title="Financial Loss vs Affected Users">
               <img 
-                src="/static/eda/financial_loss_vs_affected_users.png"
+                src="https://res.cloudinary.com/dn6xjjn10/image/upload/v1763494383/financial_loss_vs_affected_users_sttevx.png"
                 className="w-full rounded-xl border border-gray-600"
                 alt="Loss vs Users"
               />
@@ -364,7 +364,7 @@ const AnalysisPage = () => {
 
             <ChartBox title="Correlation Heatmap">
               <img 
-                src="/static/eda/correlation_heatmap.png"
+                src="https://res.cloudinary.com/dn6xjjn10/image/upload/v1763494381/correlation_heatmap_usinne.png"
                 className="w-full rounded-xl border border-gray-600"
                 alt="Correlation Heatmap"
               />
